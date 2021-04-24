@@ -7,5 +7,6 @@ boto3==1.14.19
 s3fs==0.4.2
 PyMySQL==0.10.1
 sklearn==0.0
-pillow
-
+Pillow==8.2.0
+opyrator==0.0.8
+git+https://github.com/idealo/image-super-resolution
