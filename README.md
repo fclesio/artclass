@@ -4,6 +4,31 @@ Capivara - Artwork Medium Image Classification
 *Capivara* is a deep learning model that given an artwork picture, returns the medium that the artwork was made. Written in Python. 
 
 
+
+Initial Setup
+=====================================
+
+```bash
+$ python3.6 -m venv venv
+```
+
+```bash
+$ source .capivara/bin/activate
+```
+
+```bash
+$ pip install -U pip
+```
+
+```bash
+$ pip install -r requirements.txt
+```
+
+```bash
+$ opyrator launch-ui app:image_super_resolution --port 8051
+```
+
+
 Acknowledgements
 =====================================
 This is part of my home work related with the [Full Stack Deep Learning](https://fullstackdeeplearning.com/) Project where I'm enrolled in this 2021 Autumn.
