@@ -13,7 +13,7 @@ $ python3.6 -m venv venv
 ```
 
 ```bash
-$ source .capivara/bin/activate
+$ source venv/bin/activate
 ```
 
 ```bash
