@@ -25,7 +25,15 @@ $ pip install -r requirements.txt
 ```
 
 ```bash
-$ opyrator launch-ui app:image_super_resolution --port 8051
+$ export LC_ALL=en_US.utf-8
+```
+
+```bash
+$ export LANG=en_US.utf-8
+```
+
+```bash
+$  cd app && opyrator launch-ui app:image_super_resolution --port 8051
 ```
 
 
