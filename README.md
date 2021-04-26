@@ -34,6 +34,12 @@ $ export LANG=en_US.utf-8
 $  cd app && opyrator launch-ui app:artwork_medium_classification --port 8051
 ```
 
+Export the application to a Docker container
+=====================================
+
+```bash
+opyrator export app:artwork_medium_classification --format docker my-opyrator:latest
+```
 
 Acknowledgements
 =====================================
