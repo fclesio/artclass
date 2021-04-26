@@ -6,7 +6,6 @@ from opyrator.components.types import FileContent
 from pydantic import BaseModel, Field
 from tensorflow import keras
 
-
 model = keras.models.load_model('../models/baseline_v0_02.h5')
 
 class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
@@ -16,19 +15,19 @@ class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
                'steel', 'stone', 'terracotta', 'watercolor', 'wool']
 
 
-class ImageSuperResolutionInput(BaseModel):
+class ImageInput(BaseModel):
     image_file: FileContent = Field(
         ...,
         mime_type="image/png",
         description="Upload a image to the model",
     )
 
-class ImageSuperResolutionOutput(BaseModel):
+
+class PredictionMessageOutput(BaseModel):
     message: str
 
 
-def image_super_resolution(input: ImageSuperResolutionInput) -> ImageSuperResolutionOutput:
-
+def artwork_medium_classification(input: ImageInput) -> PredictionMessageOutput:
     image = Image.open(io.BytesIO(input.image_file.as_bytes()))
     image = image.convert('RGB')
     img_resized = image.resize((256, 256))
@@ -36,4 +35,4 @@ def image_super_resolution(input: ImageSuperResolutionInput) -> ImageSuperResolu
     image_array_batch = tf.expand_dims(input_arr, 0)
     prediction = model.predict(image_array_batch)
     score = tf.nn.softmax(prediction[0])
-    return ImageSuperResolutionOutput(message=f"This image most likely belongs to {class_names[np.argmax(score)]} with a {round(100 * np.max(score), 2)} % confidence.")
+    return PredictionMessageOutput(message=f"This image most likely belongs to {class_names[np.argmax(score)]} with a {round(100 * np.max(score), 2)} % confidence.")

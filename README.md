@@ -33,13 +33,13 @@ $ export LANG=en_US.utf-8
 ```
 
 ```bash
-$  cd app && opyrator launch-ui app:image_super_resolution --port 8051
+$  cd app && opyrator launch-ui app:artwork_medium_classification --port 8051
 ```
 
 
 Acknowledgements
 =====================================
-This is part of my home work related with the [Full Stack Deep Learning](https://fullstackdeeplearning.com/) Project where I'm enrolled in this 2021 Autumn.
+This is part of my homework related with the [Full Stack Deep Learning](https://fullstackdeeplearning.com/) Project where I'm enrolled in this 2021 Autumn.
 
 
 Why Capivara?
