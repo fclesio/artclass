@@ -3,8 +3,6 @@ Capivara - Artwork Medium Image Classification
 
 *Capivara* is a deep learning model that given an artwork picture, returns the medium that the artwork was made. Written in Python. 
 
-
-
 Initial Setup
 =====================================
 
@@ -49,3 +47,5 @@ Like my previous project [Urutu](https://github.com/fclesio/urutu-rent-home) (Se
 Capivara it's a nice animal, calm, gentle and lovely. 
 
 According to Wikipedia "[The capybara (Hydrochoerus hydrochaeris) is a giant cavy rodent native to South America. It is the largest living rodent in the world"](https://en.wikipedia.org/wiki/Capybara)
+
+![capivara](images/capivara.png?raw=true "Capivara")
