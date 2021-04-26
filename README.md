@@ -48,4 +48,4 @@ Capivara it's a nice animal, calm, gentle and lovely.
 
 According to Wikipedia "[The capybara (Hydrochoerus hydrochaeris) is a giant cavy rodent native to South America. It is the largest living rodent in the world"](https://en.wikipedia.org/wiki/Capybara)
 
-![alt text](images/capivara.png?raw=true "Capivara")
+![alt text](https://www.infoescola.com/wp-content/uploads/2008/05/capivara-119654188.jpg)
