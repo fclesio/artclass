@@ -9,4 +9,5 @@ PyMySQL==0.10.1
 sklearn==0.0
 Pillow==8.2.0
 opyrator==0.0.8
-git+https://github.com/idealo/image-super-resolution
+tensorflow==2.2.0
+opencv-python==4.5.1.48

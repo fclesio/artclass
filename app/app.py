@@ -1,42 +1,85 @@
 import io
-
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
 import numpy as np
-from ISR.models import RDN
+import tensorflow as tf
 from PIL import Image
-from pydantic import BaseModel, Field
-
+from io import BytesIO
 from opyrator.components.types import FileContent
+from pydantic import BaseModel, Field
+from tensorflow import keras
+import cv2
 
 # Load pretrained model
-rdn_model = RDN(weights="psnr-small")
+model = keras.models.load_model('/Users/flavioclesio/Documents/github/capivara/app/models/baseline_v0_01.h5')
+
+class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
+               'faience', 'glass', 'gold', 'graphite', 'ink', 'iron',
+               'ivory', 'limestone', 'linen', 'marble', 'on_canvas', 'porcelain',
+               'pottery', 'print', 'salted_paper', 'silk', 'silver',
+               'steel', 'stone', 'terracotta', 'watercolor', 'wool']
 
 
 class ImageSuperResolutionInput(BaseModel):
-    image_file: FileContent = Field(..., mime_type="image/png")
+    image_file: FileContent = Field(
+        ...,
+        mime_type="image/png",
+        description="Upload a image to the model",
+    )
 
-
+"""
 class ImageSuperResolutionOutput(BaseModel):
     upscaled_image_file: FileContent = Field(
         ...,
         mime_type="image/png",
         description="Upscaled image via super resolution model.",
     )
+"""
 
 
-def image_super_resolution(
-    input: ImageSuperResolutionInput,
-) -> ImageSuperResolutionOutput:
-    """Upscale and improve the quality of low resolution images.
+class ImageSuperResolutionOutput(BaseModel):
+    message: str
 
-    This opyrator uses the [image-super-resolution](https://github.com/idealo/image-super-resolution) library.
 
-    To try it out, you can use this [example image](https://github.com/idealo/image-super-resolution/raw/master/data/input/sample/baboon.png).
-    """
+def image_super_resolution(input: ImageSuperResolutionInput) -> ImageSuperResolutionOutput:
 
-    upscaled_image = Image.fromarray(
-        rdn_model.predict(np.array(Image.open(io.BytesIO(input.image_file.as_bytes()))))
-    )
+    image = Image.open(io.BytesIO(input.image_file.as_bytes()))
 
-    img_byte_array = io.BytesIO()
-    upscaled_image.save(img_byte_array, format="PNG")
-    return ImageSuperResolutionOutput(upscaled_image_file=img_byte_array.getvalue())
+    image = image.convert('RGB')
+
+    img_resized = image.resize((256, 256))
+
+    input_arr = keras.preprocessing.image.img_to_array(img_resized)
+
+    print(type(input_arr))
+
+    print(input_arr.shape)
+
+    #image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #image_resized = cv2.resize(image_rgb, (256, 256))
+    #img_np_array = np.array(image)
+    #img_np_array = np.array(Image.open(io.BytesIO(input.image_file.as_bytes())))
+    #img__ = Image.open(io.BytesIO(input.image_file.as_bytes()))
+    #img = Image.open(io.BytesIO(input.image_file.as_bytes()))
+    #img_io = io.BytesIO(input.image_file.as_bytes())
+    #img_raw = input.image_file
+
+
+
+
+
+    #image_transformed = keras.preprocessing.image.load_img(
+    #    img__, target_size=(256, 256))
+
+    #image_array = keras.preprocessing.image.img_to_array(image_transformed)
+
+    image_array_batch = tf.expand_dims(input_arr, 0)
+
+    prediction = model.predict(image_array_batch)
+
+    score = tf.nn.softmax(prediction[0])
+
+    print(prediction)
+    print(score)
+
+    return ImageSuperResolutionOutput(message=f"This image most likely belongs to {class_names[np.argmax(score)]} with a {round(100 * np.max(score), 2)} % confidence.")
