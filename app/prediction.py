@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
 
-model = keras.models.load_model('/Users/flavioclesio/Documents/github/capivara/app/models/baseline_v0_01.h5')
+model = keras.models.load_model('/Users/flavioclesio/Documents/github/capivara/app/models/baseline_v0_03.h5')
 
 class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
                'faience', 'glass', 'gold', 'graphite', 'ink', 'iron',
