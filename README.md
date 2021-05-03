@@ -23,16 +23,11 @@ $ pip install -r requirements.txt
 ```
 
 ```bash
-$ export LC_ALL=en_US.utf-8
+$ export LC_ALL=en_US.utf-8 \
+export LANG=en_US.utf-8 \
+cd app && opyrator launch-ui app:artwork_medium_classification --port 8051
 ```
 
-```bash
-$ export LANG=en_US.utf-8
-```
-
-```bash
-$  cd app && opyrator launch-ui app:artwork_medium_classification --port 8051
-```
 
 Export the application to a Docker container
 =====================================
