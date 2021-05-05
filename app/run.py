@@ -7,11 +7,10 @@ import streamlit as st
 import time
 from tensorflow import keras
 
-
 ROOT_DIR = os.getcwd()
 
 
-model = keras.models.load_model(ROOT_DIR + '/models/baseline_v0_02.h5')
+model = keras.models.load_model(ROOT_DIR + '/models/baseline_v0_04.h5')
 
 class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
                'faience', 'glass', 'gold', 'graphite', 'ink', 'iron',
@@ -21,7 +20,6 @@ class_names = ['bronze', 'ceramic', 'copper', 'earthenware', 'etching',
 
 
 def predict(image_file):
-    #image = Image.open(io.BytesIO(input.image_file.as_bytes()))
     image = image_file
     image = image.convert('RGB')
     img_resized = image.resize((256, 256))
