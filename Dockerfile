@@ -20,4 +20,4 @@ COPY ./ /app
 
 EXPOSE 8051
 
-CMD ["streamlit", "run", "app/run.py" ]
+CMD ["streamlit", "run", "src/app/run.py" ]
