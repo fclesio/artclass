@@ -1,4 +1,6 @@
-venv
-extraction_metadata
-training
-images/validation_images/*
+venv/
+extraction_metadata/
+training/
+images/validation_images/
+src/model_training/
+src/extraction/
