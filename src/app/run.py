@@ -1,4 +1,3 @@
-import io
 import os
 import numpy as np
 import tensorflow as tf
@@ -8,7 +7,6 @@ import time
 from tensorflow import keras
 
 ROOT_DIR = os.getcwd()
-
 
 model = keras.models.load_model(ROOT_DIR + '/models/baseline_v0_04.h5')
 
