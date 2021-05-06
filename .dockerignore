@@ -4,3 +4,4 @@ training/
 images/validation_images/
 src/model_training/
 src/extraction/
+.git
