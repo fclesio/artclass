@@ -3,7 +3,6 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import streamlit as st
-import time
 from tensorflow import keras
 
 ROOT_DIR = os.getcwd()
@@ -55,7 +54,6 @@ if st.sidebar.button("Click Here to Classify"):
     else:
         with st.spinner('Classifying...'):
             predicted_class, predicted_score = predict(uploaded_image)
-            time.sleep(2)
             st.success('Image classified with success!')
 
         st.sidebar.header("Algorithm Predicts: ")
