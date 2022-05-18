@@ -4,4 +4,5 @@ numpy==1.19.2
 Pillow==8.2.0
 tensorflow-cpu==2.4.1
 opencv-python==4.5.1.48
+click<=8.0.4
 streamlit==0.81.1
