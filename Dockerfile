@@ -5,10 +5,6 @@ ENV LANG=C.UTF-8
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONFAULTHANDLER=1
 
-RUN mkdir /app \
-    && mkdir /app/src \
-    && mkdir /app/models
-
 COPY install-packages.sh /app/install-packages.sh
 COPY requirements.txt /app/requirements.txt
 COPY /src /app/src
