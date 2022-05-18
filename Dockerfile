@@ -9,6 +9,7 @@ COPY install-packages.sh /app/install-packages.sh
 COPY requirements.txt /app/requirements.txt
 COPY /src /app/src
 COPY /models /app/models
+COPY /images /app/images
 
 RUN /app/install-packages.sh
 
