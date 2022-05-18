@@ -2,26 +2,24 @@ FROM python:3.8.7-slim-buster
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONFAULTHANDLER=1
 
-RUN apt-get update -y && apt-get install -y \
-    dumb-init \
-    python3-dev \
-    python3-pip \
-    build-essential \
-    gcc \
-    apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+COPY install-packages.sh /app/install-packages.sh
+COPY requirements.txt /app/requirements.txt
 
+RUN /app/install-packages.sh
 
-COPY requirements.txt /requirements.txt
+RUN mkdir /app/src \
+    && mkdir /app/models
 
-RUN pip install -U pip \
-    && pip install -r requirements.txt
+COPY /src /app/src
+COPY /models /app/models
 
-RUN mkdir -p /src
-WORKDIR /src
+WORKDIR /app
 
-COPY /src /src
+EXPOSE 8888
+EXPOSE 8501
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 

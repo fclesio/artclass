@@ -1,4 +1,5 @@
 #!/bin/sh
 
-docker build -t fclesio/capivara:0.1 . &&
-docker run -p 8501:8501 -d --restart always fclesio/capivara:0.1
+docker build -t fclesio/artclass:0.1 .
+
+docker run -it -p 8501:8501 -p 8888:8888 fclesio/artclass:0.1 /bin/bash
