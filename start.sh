@@ -1,5 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+set -euo pipefail
 
-docker build -t fclesio/artclass:0.1 .
+VERSION="latest"
 
-docker run -it -p 8501:8501 -p 8888:8888 fclesio/artclass:0.1
+docker build -t mlopsde/artclass:$VERSION . && \
+
+docker push mlopsde/artclass:$VERSION  && \
+
+docker run -it -p 8501:8501 -p 8888:8888 mlopsde/artclass:$VERSION
