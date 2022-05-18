@@ -20,4 +20,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-CMD ["/bin/bash"]
+CMD ["streamlit", "run", "src/run.py"]
